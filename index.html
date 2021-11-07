@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Driving cost</title>
+    <style>
+        body {
+            background: linear-gradient(to right, rgb(63, 207, 7) 0%, rgb(231, 79, 163) 100%);
+            color: white;
+        }
+
+        img {
+            width: 450px;
+            height: auto;
+
+        }
+
+        .tableclass {
+            border: solid white 5px;
+        }
+
+        a:link,
+        a:visited {
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <table class="tableclass">
+        <tr>
+            <td>
+
+                <h1>Daily Driving Cost</h1>
+                <p>Determining daily driving cost based on total miles driven per day,
+                    cost per gallons of gas, average miles per gallon, parking fees per day and tolls per day.
+                </p>
+
+                <table>
+                    <tr>
+                        <td id="display"></td>
+
+                        <td>
+                            <form name="theform">
+
+                                <table>
+                                    <tr>
+                                        <td>Miles Driven:</td>
+                                        <td><input name="milesDrivenfm" size="10"><br></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Cost Per Gallon:</td>
+                                        <td><input name="costPerGallonfm" size="10"><br></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Average Miles Per Gallon:</td>
+                                        <td><input name="averageMilesPerGallonfm" size="10"><br></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Parking Fees:</td>
+                                        <td><input name="parkingFeesfm" size="10"><br></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Tolls:</td>
+                                        <td><input name="tollsfm" size="10"><br></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td>
+                                            <h2 id="finalanswer"></h2>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2"><input type="button" name="calc" value="Calculate"
+                                                onClick="calculate();">
+                                            <input type="button" name="clear" value="Clear" onClick="clearinfo();">
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+                <script>
+                    // declare the calculate function
+                    function calculate() {
+                        // declare the variables
+                        var milesDriven; // miles driven per day
+                        var costPerGallon; // cost per gallon of gas
+                        var averageMilesPerGallon; //average miles per gallon of gas
+                        var parkingFees; // parking fees per day
+                        var tolls; // tolls per day
+                        var total; // total cost
+
+                        //Get the values from the text fields
+                        milesDriven = parseInt(document.theform.milesDrivenfm.value);
+                        costPerGallon = parseFloat(document.theform.costPerGallonfm.value);
+                        averageMilesPerGallon = parseInt(document.theform.averageMilesPerGallonfm.value);
+                        parkingFees = parseFloat(document.theform.parkingFeesfm.value);
+                        tolls = parseFloat(document.theform.tollsfm.value);
+
+                        // Calculate and display daily driving cost
+                        total = parseFloat(costPerGallon * milesDriven / averageMilesPerGallon + parkingFees + tolls);
+
+                        document.querySelector('h2').innerHTML = "$ " + total.toFixed(2);
+                    }
+
+                    function clearinfo() {
+                        document.theform.milesDrivenfm.value = " ";
+                        document.theform.costPerGallonfm.value = " ";
+                        document.theform.averageMilesPerGallonfm.value = " ";
+                        document.theform.parkingFeesfm.value = " ";
+                        document.theform.tollsfm.value = " ";
+
+                        document.getElementById("finalanswer").innerHTML = " ";
+
+                        document.theform.milesDrivenfm.focus();
+                    }
+
+
+                    function getImages() {
+
+                        document.theform.milesDrivenfm.focus();
+
+                        // Create the images array
+                        images = new Array(5);
+
+                        // get the element by ID
+                        display = document.getElementById("display");
+
+                        // initialize the arrays with images
+                        images[0] = "<img src='car1.jpg' alt='image of car 1'>";
+                        images[1] = "<img src='car2.jpg' alt='image of car 2'>";
+                        images[2] = "<img src='car3.jpg' alt='image of car 3'>";
+                        images[3] = "<img src='car4.jpg' alt='image of car 4'>";
+                        images[4] = "<img src='car5.jpg' alt='image of car 5'>";
+
+                        // get a random index into the arrays
+                        i = Math.floor(Math.random() * images.length);
+
+                        // Display the image to the page 
+                        display.innerHTML = images[i];
+                    }
+
+                    getImages();
+                </script>
+
+
+
+
+
+                <a href="http://csnet.southtexascollege.edu/localuser/wpena1/">Go Back to HOMEPAGE</a><br>
+                <p>William Pena</p>
+
+
+
+
+</body>
+
+</html>
